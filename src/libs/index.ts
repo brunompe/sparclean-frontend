@@ -5,10 +5,10 @@ const request = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
 });
 
-const headersWithAuthorization = (token: IToken) => {
+const headersWithAuthorization = ({ accessToken }: IToken) => {
   return {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${accessToken}`,
     },
   };
 };
