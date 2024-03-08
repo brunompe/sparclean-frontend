@@ -25,7 +25,7 @@ export async function fetchCustomerDistance() {
     const accessToken = localStorage.getItem("access_token");
     if (accessToken !== null) {
       const response = await request.get(
-        `/customer`,
+        `/customer/distance`,
         headersWithAuthorization({ accessToken })
       );
       return response.data;

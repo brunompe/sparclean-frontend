@@ -19,7 +19,7 @@ export default function TableCardModal({ customer }: { customer: ICustomer }) {
           {phone}
         </td>
         <td className="py-2 px-4 w-1/3  h-1/5 border-b border-grey-200">
-          {distanceToOrigin.toFixed(2)}
+          {distanceToOrigin?.toFixed(2)}
         </td>
       </tr>
     </>
