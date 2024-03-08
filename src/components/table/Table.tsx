@@ -12,7 +12,9 @@ export default function Table() {
     const nameMatches = customer.name.toLowerCase().includes(searchTerm);
     const emailMatches = customer.email.toLowerCase().includes(searchTerm);
     const phoneMatches = customer.phone.toLowerCase().includes(searchTerm);
-    return nameMatches || emailMatches || phoneMatches;
+    const xMatches = customer.x.toString().includes(searchTerm);
+    const yMatches = customer.y.toString().includes(searchTerm);
+    return nameMatches || emailMatches || phoneMatches || xMatches || yMatches;
   });
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -61,6 +63,8 @@ export default function Table() {
               <th className="font-bold uppercase text-sm py-2  ">Nome</th>
               <th className="font-bold uppercase text-sm">Email</th>
               <th className="font-bold uppercase text-sm">Telefone</th>
+              <th className="font-bold uppercase text-sm">Coordenada X</th>
+              <th className="font-bold uppercase text-sm">Coordenada Y</th>
             </tr>
           </thead>
           <tbody className="text-center h-full">

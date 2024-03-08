@@ -1,10 +1,14 @@
 import { ICustomer } from "../../interfaces/ICustomer";
 
-export default function TableCard({ customer }: { customer: ICustomer }) {
-  const { name, email, phone, x, y } = customer;
+export default function TableCardModal({ customer }: { customer: ICustomer }) {
+  const { name, email, phone, distanceToOrigin, position } = customer;
+
   return (
     <>
       <tr className="h-1/5">
+        <td className="py-2 px-4 w-1/3 h-1/5  border-b border-grey-200">
+          {position}
+        </td>
         <td className="py-2 px-4 w-1/3 h-1/5  border-b border-grey-200">
           {name}
         </td>
@@ -14,8 +18,9 @@ export default function TableCard({ customer }: { customer: ICustomer }) {
         <td className="py-2 px-4 w-1/3  h-1/5 border-b border-grey-200">
           {phone}
         </td>
-        <td className="py-2 px-4 w-1/3  h-1/5 border-b border-grey-200">{x}</td>
-        <td className="py-2 px-4 w-1/3  h-1/5 border-b border-grey-200">{y}</td>
+        <td className="py-2 px-4 w-1/3  h-1/5 border-b border-grey-200">
+          {distanceToOrigin.toFixed(2)}
+        </td>
       </tr>
     </>
   );

@@ -2,11 +2,16 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { INewCustomer } from "../interfaces/ICustomer";
 import { createCustomer } from "../services/api/customerData";
 import undraw from "../assets/undraw.svg";
+import { useNavigate } from "react-router-dom";
 
 export default function CustomerNew() {
   const { register, handleSubmit } = useForm<INewCustomer>();
+  const navigate = useNavigate();
   const onSubmit: SubmitHandler<INewCustomer> = async (data) => {
-    await createCustomer(data);
+    const response = await createCustomer(data);
+    if (response) {
+      navigate("/");
+    }
   };
   return (
     <>
@@ -47,6 +52,42 @@ export default function CustomerNew() {
                 type="text"
                 id="phone"
                 name="phone"
+                className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="x" className="block text-gray-600">
+                Coordenada X
+              </label>
+              <input
+                {...register("x", {
+                  required: "Coordenada X é obrigatório",
+                  pattern: {
+                    value: /^[0-9]+$/,
+                    message: "Please enter a number",
+                  },
+                })}
+                type="number"
+                id="x"
+                name="x"
+                className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="y" className="block text-gray-600">
+                Coordenada y
+              </label>
+              <input
+                {...register("y", {
+                  required: "Coordenada Y é obrigatório",
+                  pattern: {
+                    value: /^[0-9]+$/,
+                    message: "Please enter a number",
+                  },
+                })}
+                type="number"
+                id="y"
+                name="y"
                 className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
               />
             </div>
