@@ -1,12 +1,19 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomerModal from "./modal/CustumerModal";
+import { fetchCustomerDistance } from "../services/api/customerData";
 
 export default function Sidebar() {
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [customerData, setCustomerData] = useState([]);
 
   function openModal() {
     setIsOpen(true);
+    async function fetchData() {
+      const data = await fetchCustomerDistance();
+      setCustomerData(data);
+    }
+    fetchData();
   }
 
   function closeModal() {
@@ -16,7 +23,11 @@ export default function Sidebar() {
   const navigate = useNavigate();
   return (
     <>
-      <CustomerModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
+      <CustomerModal
+        modalIsOpen={modalIsOpen}
+        closeModal={closeModal}
+        data={customerData}
+      />
       <div className="h-full w-full">
         <div className=" flex flex-wrap justify-center h-full w-full">
           <div

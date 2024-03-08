@@ -3,6 +3,7 @@ import { fetchCustomerData } from "../../services/api/customerData";
 import TableCard from "./TableCard";
 import { ICustomer } from "../../interfaces/ICustomer";
 import ReactPaginate from "react-paginate";
+import { ISelectedItem } from "../../interfaces/ISelectedItem";
 
 export default function Table() {
   const [customerData, setCustomerData] = useState<Array<ICustomer>>([]);
@@ -26,7 +27,8 @@ export default function Table() {
     indexOfLastCustumer
   );
 
-  function paginate({ selected }) {
+  function paginate(selectedItem: ISelectedItem) {
+    const { selected } = selectedItem;
     setCurrentPage(selected + 1);
   }
 
@@ -40,7 +42,7 @@ export default function Table() {
 
   return (
     <>
-      <div className="bg-white p-4 shadow rounded-lg overflow-y-auto max-h-[700px] pb-10">
+      <div className="bg-white p-4 shadow rounded-lg overflow-y-auto max-h-[700px] pb-10 m-4">
         <div className="flex justify-between px-10 border-b">
           <h2 className="text-gray-500 text-lg font-semibold py-2 mb-2 ">
             Clientes

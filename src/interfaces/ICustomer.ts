@@ -5,6 +5,8 @@ export interface ICustomer {
   distanceToOrigin: number;
   position: number;
   id: number;
+  x: string;
+  y: string;
   userId: number;
 }
 

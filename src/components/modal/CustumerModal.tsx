@@ -1,22 +1,21 @@
-import { useEffect, useState } from "react";
-import Modal from "react-modal";
+import { useState } from "react";
 import { IoClose } from "react-icons/io5";
-import undraw_location from "../../assets/undraw-location.svg";
+import Modal from "react-modal";
 import ReactPaginate from "react-paginate";
+import undraw_location from "../../assets/undraw-location.svg";
 import TableCardModal from "./TableCardModal";
-import { fetchCustomerDistance } from "../../services/api/customerData";
+import { ICustomerProps } from "../../interfaces/ICustomerProps";
+import { ISelectedItem } from "../../interfaces/ISelectedItem";
 
-export default function CustomerModal({ modalIsOpen, closeModal }) {
+export default function CustomerModal({
+  modalIsOpen,
+  closeModal,
+  data,
+}: ICustomerProps) {
   Modal.setAppElement("#root");
-  const [customerData, setCustomerData] = useState([]);
-  useEffect(() => {
-    async function fetchData() {
-      const data = await fetchCustomerDistance();
-      setCustomerData(data);
-    }
-    fetchData();
-  }, []);
-  function paginate({ selected }) {
+
+  function paginate(selectedItem: ISelectedItem) {
+    const { selected } = selectedItem;
     setCurrentPage(selected + 1);
   }
 
@@ -24,10 +23,7 @@ export default function CustomerModal({ modalIsOpen, closeModal }) {
   const [custumersPerPage] = useState(5);
   const indexOfLastCustumer = currentPage * custumersPerPage;
   const indexOfFirsCustomer = indexOfLastCustumer - custumersPerPage;
-  const currentCustomer = customerData.slice(
-    indexOfFirsCustomer,
-    indexOfLastCustumer
-  );
+  const currentCustomer = data.slice(indexOfFirsCustomer, indexOfLastCustumer);
 
   const styles = {
     content: {
@@ -60,8 +56,8 @@ export default function CustomerModal({ modalIsOpen, closeModal }) {
             </thead>
             <tbody className="text-center h-full">
               {currentCustomer &&
-                currentCustomer.map((customer, index) => {
-                  return <TableCardModal customer={customer} key={index} />;
+                currentCustomer.map((data, index) => {
+                  return <TableCardModal customer={data} key={index} />;
                 })}
             </tbody>
           </table>
@@ -72,7 +68,7 @@ export default function CustomerModal({ modalIsOpen, closeModal }) {
             nextLinkClassName="text-[14px] font-semibold text-gray-500 bg-[#fff] px-[18px] py-[8px] rounded-[10px] cursor-pointer [transition:all_0.5s_ease] hover:text-[#fff] hover:bg-[#5271FF]"
             activeLinkClassName="bg-[#5271FF] hover:text-[#fff] hover:bg-[#fff] text-[#fff]"
             onPageChange={paginate}
-            pageCount={Math.ceil(customerData.length) / custumersPerPage}
+            pageCount={Math.ceil(data.length) / custumersPerPage}
           />
         </div>
         <div className="w-[40%] flex justify-center items-center pl-20">

@@ -10,7 +10,7 @@ export default function Home({ children }: { children: ReactNode }) {
           <Header />
         </div>
         <div className="flex  h-full">
-          <div className="h-full w-[15%] bg-gray-200">
+          <div className="h-full w-[15%] bg-gray-100">
             <Sidebar />
           </div>
           <div className="w-[85%]">{children}</div>

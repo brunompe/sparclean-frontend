@@ -12,7 +12,7 @@ export default function Login() {
     if (res) {
       const token = res.data.access_token;
       localStorage.setItem("access_token", token);
-      navigate("/home");
+      navigate("/");
     }
   };
 

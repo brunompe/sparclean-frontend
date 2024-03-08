@@ -9,10 +9,6 @@ export async function fetchCustomerData() {
     const accessToken = localStorage.getItem("access_token");
 
     if (accessToken !== null) {
-      const tokenAsIToken: IToken = {
-        accessToken,
-      };
-
       const response = await request.get(
         `/customer`,
         headersWithAuthorization({ accessToken } as IToken)
@@ -28,12 +24,9 @@ export async function fetchCustomerDistance() {
   try {
     const accessToken = localStorage.getItem("access_token");
     if (accessToken !== null) {
-      const tokenAsIToken: IToken = {
-        accessToken,
-      };
       const response = await request.get(
-        `/customer/distance`,
-        headersWithAuthorization({ accessToken } as IToken)
+        `/customer`,
+        headersWithAuthorization({ accessToken })
       );
       return response.data;
     }
