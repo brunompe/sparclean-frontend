@@ -13,7 +13,7 @@ export default function Login() {
     if (res) {
       const token = res.data.access_token;
       localStorage.setItem("access_token", token);
-      navigate("/");
+      navigate("/home");
     }
   };
 
@@ -60,12 +60,6 @@ export default function Login() {
               className="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full"
             ></input>
           </form>
-
-          <div className="mt-6 text-blue-500 text-center">
-            <a href="#" className="hover:underline">
-              Sign up Here
-            </a>
-          </div>
         </div>
       </div>
     </>

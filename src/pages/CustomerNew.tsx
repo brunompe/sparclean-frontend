@@ -11,7 +11,7 @@ export default function CustomerNew() {
   const onSubmit: SubmitHandler<INewCustomer> = async (data) => {
     const response = await createCustomer(data);
     if (response) {
-      navigate("/");
+      navigate("/home");
     }
   };
 

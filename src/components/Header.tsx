@@ -7,7 +7,7 @@ export default function Header() {
 
   function handleLogOut() {
     localStorage.clear();
-    navigate("/login");
+    navigate("/");
   }
 
   return (

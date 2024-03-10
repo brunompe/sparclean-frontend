@@ -7,7 +7,7 @@ export default function Dashboard() {
   return (
     <Home>
       <Routes>
-        <Route path="/" element={<Table />} />
+        <Route path="/home" element={<Table />} />
         <Route path="/customer/new" element={<CustomerNew />} />
       </Routes>
     </Home>
