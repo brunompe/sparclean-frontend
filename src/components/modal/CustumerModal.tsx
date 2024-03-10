@@ -3,9 +3,10 @@ import { IoClose } from "react-icons/io5";
 import Modal from "react-modal";
 import ReactPaginate from "react-paginate";
 import undraw_location from "../../assets/undraw-location.svg";
-import TableCardModal from "./TableCardModal";
 import { ICustomerProps } from "../../interfaces/ICustomerProps";
 import { ISelectedItem } from "../../interfaces/ISelectedItem";
+import { styles } from "./Style";
+import TableCardModal from "./TableCardModal";
 
 export default function CustomerModal({
   modalIsOpen,
@@ -14,30 +15,17 @@ export default function CustomerModal({
 }: ICustomerProps) {
   Modal.setAppElement("#root");
 
-  function paginate(selectedItem: ISelectedItem) {
-    const { selected } = selectedItem;
-    setCurrentPage(selected + 1);
-  }
-
   const [currentPage, setCurrentPage] = useState(1);
   const [custumersPerPage] = useState(5);
   const indexOfLastCustumer = currentPage * custumersPerPage;
   const indexOfFirsCustomer = indexOfLastCustumer - custumersPerPage;
   const currentCustomer = data.slice(indexOfFirsCustomer, indexOfLastCustumer);
 
-  const styles = {
-    content: {
-      height: "700px",
-      width: "70%",
-      display: "flex",
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-    },
-  };
+  function paginate(selectedItem: ISelectedItem) {
+    const { selected } = selectedItem;
+    setCurrentPage(selected + 1);
+  }
+
   return (
     <>
       <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={styles}>
@@ -62,7 +50,7 @@ export default function CustomerModal({
             </tbody>
           </table>
           <ReactPaginate
-            containerClassName=" w-1/2 flex justify-center items-center mt-[50px] gap-[20px]"
+            containerClassName="w-1/2 flex justify-center items-center mt-[50px] gap-[20px]"
             pageLinkClassName="text-[14px] font-semibold text-gray-500 bg-[#fff] px-[18px] py-[8px] rounded-[10px] cursor-pointer [transition:all_0.5s_ease] hover:text-[#fff] hover:bg-[#5271FF]"
             previousLinkClassName="text-[14px] font-semibold text-gray-500 bg-[#fff] px-[18px] py-[8px] rounded-[10px] cursor-pointer [transition:all_0.5s_ease] hover:text-[#fff] hover:bg-[#5271FF]"
             nextLinkClassName="text-[14px] font-semibold text-gray-500 bg-[#fff] px-[18px] py-[8px] rounded-[10px] cursor-pointer [transition:all_0.5s_ease] hover:text-[#fff] hover:bg-[#5271FF]"

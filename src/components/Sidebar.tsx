@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CustomerModal from "./modal/CustumerModal";
 import { fetchCustomerDistance } from "../services/api/customerData";
+import CustomerModal from "./modal/CustumerModal";
 
 export default function Sidebar() {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [customerData, setCustomerData] = useState([]);
+  const navigate = useNavigate();
 
   function openModal() {
     setIsOpen(true);
@@ -20,7 +21,6 @@ export default function Sidebar() {
     setIsOpen(false);
   }
 
-  const navigate = useNavigate();
   return (
     <>
       <CustomerModal

@@ -1,9 +1,10 @@
+import { IoIosLogOut } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/8.svg";
-import { IoIosLogOut } from "react-icons/io";
 
 export default function Header() {
   const navigate = useNavigate();
+
   function handleLogOut() {
     localStorage.clear();
     navigate("/login");

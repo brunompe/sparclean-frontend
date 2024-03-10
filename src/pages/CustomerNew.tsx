@@ -1,18 +1,20 @@
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import undraw from "../assets/undraw.svg";
 import { INewCustomer } from "../interfaces/ICustomer";
 import { createCustomer } from "../services/api/customerData";
-import undraw from "../assets/undraw.svg";
-import { useNavigate } from "react-router-dom";
 
 export default function CustomerNew() {
   const { register, handleSubmit } = useForm<INewCustomer>();
   const navigate = useNavigate();
+
   const onSubmit: SubmitHandler<INewCustomer> = async (data) => {
     const response = await createCustomer(data);
     if (response) {
       navigate("/");
     }
   };
+
   return (
     <>
       <div className="flex items-center">

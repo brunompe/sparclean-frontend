@@ -1,7 +1,6 @@
 export function Search() {
   return (
     <>
-      {/* <!-- Campo de búsqueda --> */}
       <div className="relative max-w-md w-full">
         <div className="absolute top-1 left-2 inline-flex items-center p-2">
           <i className="text-gray-400"></i>

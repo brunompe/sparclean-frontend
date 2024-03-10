@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
+import ReactPaginate from "react-paginate";
+import { ICustomer } from "../../interfaces/ICustomer";
+import { ISelectedItem } from "../../interfaces/ISelectedItem";
 import { fetchCustomerData } from "../../services/api/customerData";
 import TableCard from "./TableCard";
-import { ICustomer } from "../../interfaces/ICustomer";
-import ReactPaginate from "react-paginate";
-import { ISelectedItem } from "../../interfaces/ISelectedItem";
 
 export default function Table() {
   const [customerData, setCustomerData] = useState<Array<ICustomer>>([]);
   const [searchQuery, setSearchQuery] = useState("");
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [custumersPerPage] = useState(5);
+  const indexOfLastCustumer = currentPage * custumersPerPage;
+  const indexOfFirsCustomer = indexOfLastCustumer - custumersPerPage;
   const filteredCustomerData = customerData.filter((customer) => {
     const searchTerm = searchQuery.toLowerCase();
     const nameMatches = customer.name.toLowerCase().includes(searchTerm);
@@ -18,10 +23,6 @@ export default function Table() {
     return nameMatches || emailMatches || phoneMatches || xMatches || yMatches;
   });
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [custumersPerPage] = useState(5);
-  const indexOfLastCustumer = currentPage * custumersPerPage;
-  const indexOfFirsCustomer = indexOfLastCustumer - custumersPerPage;
   const currentCustomer = filteredCustomerData.slice(
     indexOfFirsCustomer,
     indexOfLastCustumer

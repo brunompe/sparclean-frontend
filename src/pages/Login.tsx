@@ -7,6 +7,7 @@ import { login } from "../services/api/login";
 export default function Login() {
   const { register, handleSubmit } = useForm<ILoginInput>();
   const navigate = useNavigate();
+
   const onSubmit: SubmitHandler<ILoginInput> = async (data) => {
     const res = await login(data);
     if (res) {

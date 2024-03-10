@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "../pages/Home";
 import CustomerNew from "../pages/CustomerNew";
+import Home from "../pages/Home";
 import Table from "./table/Table";
 
 export default function Dashboard() {
